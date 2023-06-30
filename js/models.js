@@ -24,7 +24,7 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    return this.username;
   }
 }
 
@@ -80,7 +80,8 @@ class StoryList {
         url,
       },
     });
-    const story = new Story(response.story);
+    // console.log(response.data.story);
+    const story = new Story(response.data.story);
     this.stories.push(story);
     user.ownStories.push(story);
     return story;

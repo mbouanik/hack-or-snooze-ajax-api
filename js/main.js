@@ -1,7 +1,6 @@
 "use strict";
 
 // So we don't have to keep re-finding things on page, find DOM elements once:
-
 const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
@@ -13,6 +12,10 @@ const $signupForm = $("#signup-form");
 const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
+const $storyForm = $("#story-form");
+
+$("#story-form").hide();
+$("#story-links").hide();
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
@@ -20,14 +23,9 @@ const $navLogOut = $("#nav-logout");
  */
 
 function hidePageComponents() {
-  const components = [
-    $allStoriesList,
-    $loginForm,
-    $signupForm,
-  ];
-  components.forEach(c => c.hide());
+  const components = [$allStoriesList, $loginForm, $signupForm, $storyForm];
+  components.forEach((c) => c.hide());
 }
-
 /** Overall function to kick off the app. */
 
 async function start() {
@@ -38,13 +36,18 @@ async function start() {
   await getAndShowStoriesOnStart();
 
   // if we got a logged-in user
-  if (currentUser) updateUIOnUserLogin();
+  if (currentUser) {
+    updateUIOnUserLogin();
+    $("#story-links").show();
+  }
 }
 
 // Once the DOM is entirely loaded, begin the app
 
-console.warn("HEY STUDENT: This program sends many debug messages to" +
-  " the console. If you don't see the message 'start' below this, you're not" +
-  " seeing those helpful debug messages. In your browser console, click on" +
-  " menu 'Default Levels' and add Verbose");
+console.warn(
+  "HEY STUDENT: This program sends many debug messages to" +
+    " the console. If you don't see the message 'start' below this, you're not" +
+    " seeing those helpful debug messages. In your browser console, click on" +
+    " menu 'Default Levels' and add Verbose"
+);
 $(start);

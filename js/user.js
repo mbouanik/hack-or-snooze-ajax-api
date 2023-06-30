@@ -22,7 +22,7 @@ async function login(evt) {
   currentUser = await User.login(username, password);
 
   $loginForm.trigger("reset");
-
+  $("#story-links").show();
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
 }
