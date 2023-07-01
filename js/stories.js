@@ -25,6 +25,7 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+      ${favStar(currentUser, story.storyId)}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -53,7 +54,6 @@ function putStoriesOnPage() {
 
 $("#story-form").on("submit", async (evt) => {
   evt.preventDefault();
-  console.log(currentUser.loginToken);
   const title = $("input[name ='title']").val();
   const author = $("input[name ='author']").val();
   const url = $("input[name ='url']").val();
@@ -66,3 +66,40 @@ $("#story-form").on("submit", async (evt) => {
   $("#story-form").hide(700);
   $("#all-stories-list").prepend(generateStoryMarkup(story));
 });
+
+$(".stories-container").on("click", async (evt) => {
+  if (evt.target.tagName === "I") {
+    $(evt.target).toggleClass("fas far");
+
+    if ($(evt.target)[0].classList[1] === "fas") {
+      await axios.post(
+        `${BASE_URL}/users/${currentUser.username}/favorites/${
+          $(evt.target).parent()[0].id
+        }`,
+        {
+          token: currentUser.loginToken,
+        }
+      );
+    } else {
+      await axios.delete(
+        `${BASE_URL}/users/${currentUser.username}/favorites/${
+          $(evt.target).parent()[0].id
+        }`,
+        {
+          token: currentUser.loginToken,
+        }
+      );
+    }
+  }
+});
+
+function favStar(user, storyId) {
+  if (user) {
+    for (let story of user.favorites) {
+      if (story.storyId === storyId) return '<i class="fa-star fas"> </i>';
+    }
+    return '<i class="fa-star far"> </i>';
+  } else {
+    return "";
+  }
+}

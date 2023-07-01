@@ -23,12 +23,12 @@ h5 {
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 a:hover {
   text-decoration: underline;
 }
-
 
 /* Site layout */
 
@@ -43,7 +43,6 @@ a:hover {
 .hidden {
   display: none;
 }
-
 
 /* Forms */
 
@@ -105,7 +104,6 @@ form > hr {
 .login-input label {
   width: 70px;
 }
-
 
 /* responsive queries for tightening things up for mobile. */
 

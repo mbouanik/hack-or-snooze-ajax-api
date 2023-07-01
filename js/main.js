@@ -39,11 +39,16 @@ async function start() {
   if (currentUser) {
     updateUIOnUserLogin();
     $("#story-links").show();
+    console.log(currentUser.favorites);
   }
 }
 
-// Once the DOM is entirely loaded, begin the app
+// $(".star").on("click", (evt) => {
+//   console.log("hello");
+//   console.log(evt.target);
+// });
 
+// Once the DOM is entirely loaded, begin the app
 console.warn(
   "HEY STUDENT: This program sends many debug messages to" +
     " the console. If you don't see the message 'start' below this, you're not" +

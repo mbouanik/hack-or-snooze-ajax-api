@@ -24,7 +24,7 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    return this.username;
+    return new URL(this.url).hostname;
   }
 }
 

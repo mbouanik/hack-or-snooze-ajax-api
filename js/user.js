@@ -23,6 +23,9 @@ async function login(evt) {
 
   $loginForm.trigger("reset");
   $("#story-links").show();
+  $loginForm.hide();
+  $signupForm.hide();
+
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
 }
