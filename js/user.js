@@ -29,6 +29,7 @@ async function login(evt) {
   for (let story of $allStoriesList.children()) {
     $(`${favStar(currentUser, story.id)}`).prependTo(`#${story.id}`);
   }
+  $("li").prepend('<d class="fa fa-times" aria-hidden="true"></d>');
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
 }

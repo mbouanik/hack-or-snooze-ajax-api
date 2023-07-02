@@ -25,7 +25,12 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
-      ${favStar(currentUser, story.storyId)}
+      ${
+        currentUser
+          ? '<d class="fa fa-times delete" aria-hidden="true"></d>'
+          : ""
+      }
+     <span class='star'> ${favStar(currentUser, story.storyId)} </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -56,7 +61,6 @@ $("#story-form").on("submit", async (evt) => {
   const title = $("input[name ='title']").val();
   const author = $("input[name ='author']").val();
   const url = $("input[name ='url']").val();
-  console.log(author, title, url);
   const story = await storyList.addStory(currentUser, {
     title,
     author,
@@ -67,25 +71,13 @@ $("#story-form").on("submit", async (evt) => {
 });
 
 $(".stories-container").on("click", async (evt) => {
-  const storyId = $(evt.target).parent()[0].id;
+  const storyId = $(evt.target).parent().parent()[0].id;
   if (evt.target.tagName === "I") {
     $(evt.target).toggleClass("fas far");
 
-    if ($(evt.target)[0].classList[1] === "fas") {
-      await axios.post(
-        `${BASE_URL}/users/${currentUser.username}/favorites/${storyId}`,
-        {
-          token: currentUser.loginToken,
-        }
-      );
-    } else {
-      await axios.delete(
-        `${BASE_URL}/users/${currentUser.username}/favorites/${storyId}`,
-        {
-          data: { token: currentUser.loginToken },
-        }
-      );
-    }
+    $(evt.target)[0].classList[1] === "fas"
+      ? await currentUser.addFavorites(storyId)
+      : await currentUser.removeFavorites(storyId);
   }
 });
 
@@ -99,3 +91,36 @@ function favStar(user, storyId) {
     return "";
   }
 }
+
+$("#favorites-stories").on("click", () => {
+  $($allStoriesList).children().remove();
+  $storyForm.hide();
+  const h5 = $("h5");
+
+  if (currentUser.favorites.length === 0) {
+    h5.show();
+    return;
+  }
+  h5.hide();
+  const favStoryIds = currentUser.favorites.map((story) => story.storyId);
+  const favStory = storyList.stories.filter((story) =>
+    favStoryIds.includes(story.storyId)
+  );
+
+  for (let story of favStory) {
+    $(generateStoryMarkup(story)).appendTo($allStoriesList);
+  }
+});
+
+$(".stories-container").on("click", async (evt) => {
+  const storyId = $(evt.target).parent()[0].id;
+  if (evt.target.tagName === "D") {
+    await axios.delete(`${BASE_URL}/stories/${storyId}`, {
+      data: { token: currentUser.loginToken },
+    });
+    $(`#${storyId}`).hide(400);
+    currentUser.favorites = currentUser.favorites.filter(
+      (fav) => fav.storyId != storyId
+    );
+  }
+});

@@ -16,6 +16,7 @@ const $storyForm = $("#story-form");
 
 $("#story-form").hide();
 $("#story-links").hide();
+const $h5 = $("h5").hide();
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
@@ -23,7 +24,13 @@ $("#story-links").hide();
  */
 
 function hidePageComponents() {
-  const components = [$allStoriesList, $loginForm, $signupForm, $storyForm];
+  const components = [
+    $allStoriesList,
+    $loginForm,
+    $signupForm,
+    $storyForm,
+    $h5,
+  ];
   components.forEach((c) => c.hide());
 }
 /** Overall function to kick off the app. */
@@ -39,7 +46,6 @@ async function start() {
   if (currentUser) {
     updateUIOnUserLogin();
     $("#story-links").show();
-    console.log(currentUser.favorites);
   }
 }
 
