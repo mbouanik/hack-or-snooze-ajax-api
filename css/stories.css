@@ -5,12 +5,13 @@
 }
 
 .stories-list > li {
-  color: gray;
+  color: white;
   font-size: 0.8rem;
   margin: 10px 0;
 }
 
 #stories-loading-msg {
+  color: white;
   font-weight: bold;
   font-size: 150%;
   margin: 20px 30px;
@@ -19,7 +20,7 @@
 /* Individual stories */
 
 .story-link {
-  color: black;
+  color: white;
   font-size: 0.85rem;
   font-weight: normal;
   margin: 18px 0;

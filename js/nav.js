@@ -36,7 +36,6 @@ function updateNavOnLogin() {
 }
 
 $("#submit-story").on("click", () => {
-  hidePageComponents();
   putStoriesOnPage();
   $allStoriesList.show();
 

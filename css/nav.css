@@ -2,7 +2,10 @@
 
 nav {
   display: flex;
-  background-color: #ff6600;
+  background-color: #f9d29d;
+  /* #fffe7a; */
+  color: #6a93cb;
+  border-radius: 20px 20px 0 0;
   align-items: center;
   padding: 5px 20px;
   border-radius: 3px 3px 0 0;
@@ -20,4 +23,7 @@ nav {
 .nav-right {
   margin-left: auto;
   text-align: right;
+}
+label {
+  color: white;
 }

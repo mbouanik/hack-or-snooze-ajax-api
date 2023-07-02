@@ -1,6 +1,7 @@
 /* General typography */
 
 body {
+  background-color: #ffe5b4;
   font-family: Arimo, sans-serif;
   margin: 8px 7.5vw;
 }
@@ -38,7 +39,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-self: center;
-  background-color: #f6f6ef;
+  background-color: #6a93cb;
+  border-radius: 0 0 10px 10px;
 }
 
 .hidden {
@@ -87,7 +89,7 @@ form > button {
   border-radius: 4px;
   padding: 8px;
   font-size: 0.85rem;
-  background-color: lightslategray;
+  background-color: #f9d29d;
   color: white;
   cursor: pointer;
   transition: all 0.15s;

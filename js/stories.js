@@ -25,8 +25,9 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+      
       ${
-        currentUser
+        deleteBtn(currentUser, story)
           ? '<d class="fa fa-times delete" aria-hidden="true"></d>'
           : ""
       }
@@ -68,6 +69,9 @@ $("#story-form").on("submit", async (evt) => {
   });
   $("#story-form").hide(700);
   $("#all-stories-list").prepend(generateStoryMarkup(story));
+  $("input[name ='title']").val("");
+  $("input[name ='author']").val("");
+  $("input[name ='url']").val("");
 });
 
 $(".stories-container").on("click", async (evt) => {
@@ -98,6 +102,7 @@ $("#favorites-stories").on("click", () => {
   const h5 = $("h5");
 
   if (currentUser.favorites.length === 0) {
+    h5.text("No favorites added!");
     h5.show();
     return;
   }
@@ -124,3 +129,34 @@ $(".stories-container").on("click", async (evt) => {
     );
   }
 });
+
+$("#my-stories").on("click", () => {
+  $($allStoriesList).children().remove();
+  $storyForm.hide();
+  const h5 = $("h5");
+
+  if (currentUser.ownStories.length === 0) {
+    h5.text("No stories added by user yet!");
+    h5.show();
+    return;
+  }
+  h5.hide();
+  const ownStoryIds = currentUser.ownStories.map((story) => story.storyId);
+  const ownStory = storyList.stories.filter((story) =>
+    ownStoryIds.includes(story.storyId)
+  );
+
+  for (let story of ownStory) {
+    $(generateStoryMarkup(story)).appendTo($allStoriesList);
+  }
+});
+
+function deleteBtn(user, story) {
+  if (!user) return false;
+  for (let ownStory of user.ownStories) {
+    if (ownStory.storyId === story.storyId) {
+      return true;
+    }
+  }
+  return false;
+}
