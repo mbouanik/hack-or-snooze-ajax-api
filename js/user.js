@@ -26,6 +26,9 @@ async function login(evt) {
   $loginForm.hide();
   $signupForm.hide();
 
+  for (let story of $allStoriesList.children()) {
+    $(`${favStar(currentUser, story.id)}`).prependTo(`#${story.id}`);
+  }
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
 }

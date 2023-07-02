@@ -48,7 +48,6 @@ function putStoriesOnPage() {
     const $story = generateStoryMarkup(story);
     $allStoriesList.append($story);
   }
-
   $allStoriesList.show();
 }
 
@@ -68,25 +67,22 @@ $("#story-form").on("submit", async (evt) => {
 });
 
 $(".stories-container").on("click", async (evt) => {
+  const storyId = $(evt.target).parent()[0].id;
   if (evt.target.tagName === "I") {
     $(evt.target).toggleClass("fas far");
 
     if ($(evt.target)[0].classList[1] === "fas") {
       await axios.post(
-        `${BASE_URL}/users/${currentUser.username}/favorites/${
-          $(evt.target).parent()[0].id
-        }`,
+        `${BASE_URL}/users/${currentUser.username}/favorites/${storyId}`,
         {
           token: currentUser.loginToken,
         }
       );
     } else {
       await axios.delete(
-        `${BASE_URL}/users/${currentUser.username}/favorites/${
-          $(evt.target).parent()[0].id
-        }`,
+        `${BASE_URL}/users/${currentUser.username}/favorites/${storyId}`,
         {
-          token: currentUser.loginToken,
+          data: { token: currentUser.loginToken },
         }
       );
     }
@@ -96,9 +92,9 @@ $(".stories-container").on("click", async (evt) => {
 function favStar(user, storyId) {
   if (user) {
     for (let story of user.favorites) {
-      if (story.storyId === storyId) return '<i class="fa-star fas"> </i>';
+      if (story.storyId === storyId) return '<i class="fa-star fas"></i>';
     }
-    return '<i class="fa-star far"> </i>';
+    return '<i class="fa-star far"></i>';
   } else {
     return "";
   }
