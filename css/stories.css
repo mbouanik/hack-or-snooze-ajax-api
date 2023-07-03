@@ -6,11 +6,12 @@ i {
   flex-direction: column;
   align-items: baseline;
 }
-/* .story {
+.story {
   display: flex;
+
   flex-direction: column;
-  align-items: first baseline;
-} */
+  align-items: baseline;
+}
 /* Lists of stories */
 
 .stories-list {
@@ -43,7 +44,6 @@ i {
 }
 
 .story-author {
-  margin-left: 2em;
   color: green;
 }
 

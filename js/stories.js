@@ -27,7 +27,7 @@ function generateStoryMarkup(story) {
   
       <li id="${story.storyId}">
       <div class='story'>
-  <div >
+     <div >
      <span class='star'> ${favStar(currentUser, story.storyId)} </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
@@ -39,7 +39,7 @@ function generateStoryMarkup(story) {
         </div>
         </div>
       </li>
-      <hr>
+
     `);
 }
 

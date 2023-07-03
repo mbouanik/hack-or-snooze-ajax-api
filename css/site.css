@@ -16,7 +16,7 @@ i {
 li {
   display: flex;
   flex-direction: row;
-  align-items: first baseline;
+  align-items: baseline;
 }
 h1 {
   font-size: 1.1rem;
