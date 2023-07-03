@@ -1,10 +1,23 @@
 /* General typography */
 
 body {
+  background-image: linear-gradient(to right, #b58ecc, #5de6de, #b58ecc);
   font-family: Arimo, sans-serif;
   margin: 8px 7.5vw;
 }
-
+d {
+  padding-right: 0.3em;
+  font-size: 1.1rem;
+}
+i {
+  font-size: 1rem;
+  padding-right: 0.3em;
+}
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: first baseline;
+}
 h1 {
   font-size: 1.1rem;
   margin: 0;
@@ -16,6 +29,7 @@ h4 {
 }
 
 h5 {
+  margin-left: 1em;
   font-size: 0.9rem;
   font-weight: lighter;
 }
@@ -29,6 +43,11 @@ a:hover {
   text-decoration: underline;
 }
 
+hr {
+  height: 1px;
+  background-color: lightgray;
+  border: none;
+}
 /* Site layout */
 
 /* This is the basic box that the main part of the page goes into */

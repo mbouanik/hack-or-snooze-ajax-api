@@ -1,3 +1,16 @@
+i {
+  padding: 0.1em;
+}
+.story-author-user {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+/* .story {
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+} */
 /* Lists of stories */
 
 .stories-list {
@@ -20,8 +33,8 @@
 
 .story-link {
   color: black;
-  font-size: 0.85rem;
-  font-weight: normal;
+  font-size: 1rem;
+  font-weight: bold;
   margin: 18px 0;
 }
 
@@ -31,8 +44,10 @@
 
 .story-author {
   margin-left: 2em;
+  color: green;
 }
 
 .story-user {
+  color: orange;
   display: block;
 }
