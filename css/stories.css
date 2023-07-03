@@ -40,14 +40,17 @@ i {
 }
 
 .story-link:hover {
+  color: orange;
   text-decoration: none;
 }
 
 .story-author {
+  font-size: 1em;
   color: green;
 }
 
 .story-user {
+  font-size: 1em;
   color: orange;
   display: block;
 }

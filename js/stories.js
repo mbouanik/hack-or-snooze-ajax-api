@@ -127,6 +127,7 @@ $($allStoriesList).on("click", async (evt) => {
       data: { token: currentUser.loginToken },
     });
     $(`#${storyId}`).hide(400);
+    $(`#${storyId}`).next().hide();
     storyList.stories = storyList.stories.filter(
       (story) => story.storyId != storyId
     );

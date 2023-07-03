@@ -25,7 +25,6 @@ async function login(evt) {
   $("#story-links").show();
   $loginForm.hide();
   $signupForm.hide();
-  $("#my-stories").on("click", currentUser.myStories);
 
   for (let story of $allStoriesList.children()) {
     if (story.id)
