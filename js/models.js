@@ -80,10 +80,9 @@ class StoryList {
         url,
       },
     });
-    // console.log(response.data.story);
     const story = new Story(response.data.story);
-    this.stories.push(story);
-    user.ownStories.push(story);
+    this.stories.unshift(story);
+    user.ownStories.unshift(story);
     return story;
   }
 }

@@ -1,8 +1,6 @@
 /* General typography */
 
 body {
-  /* background-color: rgb(159, 193, 188); */
-  background-color: rgb(207, 216, 219);
   font-family: Arimo, sans-serif;
   margin: 8px 7.5vw;
 }
@@ -18,7 +16,6 @@ h4 {
 }
 
 h5 {
-  margin-left: 1em;
   font-size: 0.9rem;
   font-weight: lighter;
 }
@@ -26,7 +23,6 @@ h5 {
 a {
   text-decoration: none;
   color: inherit;
-  cursor: pointer;
 }
 
 a:hover {
@@ -40,8 +36,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-self: center;
-  background-color: #6a93cb;
-  border-radius: 0 0 10px 10px;
+  background-color: #f6f6ef;
 }
 
 .hidden {
@@ -90,14 +85,14 @@ form > button {
   border-radius: 4px;
   padding: 8px;
   font-size: 0.85rem;
-  background-color: rgb(207, 216, 219);
+  background-color: lightslategray;
   color: white;
   cursor: pointer;
   transition: all 0.15s;
 }
 
 form > button:hover {
-  background-color: rgb(159, 193, 188);
+  background-color: dimgray;
 }
 
 form > hr {

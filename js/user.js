@@ -28,13 +28,13 @@ async function login(evt) {
 
   for (let story of $allStoriesList.children()) {
     $(`${favStar(currentUser, story.id)}`).prependTo(`#${story.id}`);
-    for (let ownStory of currentUser.ownStories) {
-      if (ownStory.storyId === story.id) {
-        $(`#${story.id}`).prepend(
-          '<d class="fa fa-times" aria-hidden="true"></d>'
-        );
-      }
-    }
+    // for (let ownStory of currentUser.ownStories) {
+    //   if (ownStory.storyId === story.id) {
+    //     $(`#${story.id}`).prepend(
+    //       '<d class="fa fa-times" aria-hidden="true"></d>'
+    //     );
+    //   }
+    // }
   }
   // $("li").prepend('<d class="fa fa-times" aria-hidden="true"></d>');
   saveUserCredentialsInLocalStorage();

@@ -25,12 +25,6 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
-      
-      ${
-        deleteBtn(currentUser, story)
-          ? '<d class="fa fa-times delete" aria-hidden="true"></d>'
-          : ""
-      }
      <span class='star'> ${favStar(currentUser, story.storyId)} </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
@@ -123,10 +117,19 @@ $(".stories-container").on("click", async (evt) => {
     await axios.delete(`${BASE_URL}/stories/${storyId}`, {
       data: { token: currentUser.loginToken },
     });
-    $(`#${storyId}`).hide(400);
+    $(`#${storyId}`).remove(400);
     currentUser.favorites = currentUser.favorites.filter(
       (fav) => fav.storyId != storyId
     );
+    storyList.stories = storyList.stories.filter(
+      (story) => story.storyId != storyId
+    );
+    currentUser.ownStories = currentUser.ownStories.filter(
+      (story) => story.storyId != storyId
+    );
+    if (currentUser.ownStories.length === 0) {
+      $h5.text("No stories added by user yet!").show();
+    }
   }
 });
 
@@ -147,16 +150,10 @@ $("#my-stories").on("click", () => {
   );
 
   for (let story of ownStory) {
-    $(generateStoryMarkup(story)).appendTo($allStoriesList);
+    $(
+      generateStoryMarkup(story).prepend(
+        '<d class="fa fa-times delete" aria-hidden="true"></d>'
+      )
+    ).appendTo($allStoriesList);
   }
 });
-
-function deleteBtn(user, story) {
-  if (!user) return false;
-  for (let ownStory of user.ownStories) {
-    if (ownStory.storyId === story.storyId) {
-      return true;
-    }
-  }
-  return false;
-}

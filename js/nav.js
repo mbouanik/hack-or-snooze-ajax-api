@@ -38,6 +38,6 @@ function updateNavOnLogin() {
 $("#submit-story").on("click", () => {
   putStoriesOnPage();
   $allStoriesList.show();
-
+  $h5.hide();
   $("#story-form").show(400);
 });
