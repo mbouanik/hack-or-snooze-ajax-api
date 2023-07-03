@@ -26,9 +26,10 @@ function generateStoryMarkup(story) {
   return $(`
   
       <li id="${story.storyId}">
+     <span class='star'> ${favStar(currentUser, story.storyId)} </span>
+
       <div class='story'>
      <div >
-     <span class='star'> ${favStar(currentUser, story.storyId)} </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>  <small class="story-hostname">(${hostName})</small>
@@ -39,6 +40,7 @@ function generateStoryMarkup(story) {
         </div>
         </div>
       </li>
+      <hr>
 
     `);
 }
@@ -75,7 +77,7 @@ $("#story-form").on("submit", async (evt) => {
   $("input[name ='url']").val("");
 });
 
-$(".stories-container").on("click", async (evt) => {
+$($allStoriesList).on("click", async (evt) => {
   const storyId = $(evt.target).attr("storyId");
   if (evt.target.tagName === "I") {
     $(evt.target).toggleClass("fas far");
@@ -118,7 +120,7 @@ $("#favorites-stories").on("click", () => {
   }
 });
 
-$(".stories-container").on("click", async (evt) => {
+$($allStoriesList).on("click", async (evt) => {
   const storyId = $(evt.target).attr("storyId");
   if (evt.target.tagName === "D") {
     await axios.delete(`${BASE_URL}/stories/${storyId}`, {

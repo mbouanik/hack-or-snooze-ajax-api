@@ -25,11 +25,12 @@ async function login(evt) {
   $("#story-links").show();
   $loginForm.hide();
   $signupForm.hide();
+  $("#my-stories").on("click", currentUser.myStories);
 
   for (let story of $allStoriesList.children()) {
-    $(`${favStar(currentUser, story.id)}`).prependTo(`#${story.id}`);
+    if (story.id)
+      $(`${favStar(currentUser, story.id)}`).prependTo(`#${story.id}`);
   }
-
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
 }
